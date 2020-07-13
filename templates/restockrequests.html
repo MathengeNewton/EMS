@@ -47,13 +47,13 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="active ">
+                    <li class="">
                         <a href="/">
                             <i class="nc-icon nc-bank"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="">
+                    <li class="active">
                         <a href="/receivestocks">
                             <i class="fas fa-align-center"></i>
                             <p>Restock Request</p>
@@ -117,7 +117,7 @@
                     <div class="col-md-12">
                         <div class="card demo-icons">
                             <div class="card-header">
-                                <h5 class="card-title">Products</h5>
+                                <h5 class="card-title">Products Restock Request</h5>
 
                                 <div class="form-group">
                                     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -140,111 +140,26 @@
                                         <table class="table" id="myTable">
                                             <thead class="text-primary">
                                                 <th>Product</th>
-                                                <th>Category</th>
-                                                <th>Description</th>
+                                                <th>Date</th>
                                                 <th>Quantity</th>
-                                                <th>Edit</th>
-                                                <th>Delete</th>
+                                                <th>Status</th>
                                             </thead>
                                             <tbody>
-                                                {% for product in products %}
+                                                {% for record in records%}
                                                 <tr>
-                                                    <td>{{ product.name }}</td>
-                                                    <td>{{ product.category }}</td>
-                                                    <td>{{ product.description }}</td>
-                                                    <td>{{ product.quantity }}</td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                                            data-target="#update{{ product.id }}">Edit </button>
-
-                                                        <!-- add new product modal -->
-                                                        <div class="modal fade" id="update{{ product.id }}" tabindex="-1"
-                                                            role="dialog" aria-labelledby="exampleModalLabel"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">
-                                                                            Update</h5>
-                                                                        <button type="button" class="close"
-                                                                            data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <form action="/product/update/{{ product.id }}"
-                                                                            method="POST">
-
-                                                                            <!-- <div class="form-group">
-                                                                                <label for="newstatus">Status</label>
-                                                                                <input type="text" class="form-control"
-                                                                                    name="newstatus">
-                                                                            </div> -->
-                                                                            <div class="form-group">
-                                                                                <button type="submit"
-                                                                                    class="btn btn-success btn-md">update</button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <form action="/delete/{{ product.id }}" method="POST">
-                                                            <button class="btn btn-sm btn-danger">Delete</button>
-                                                        </form>
-                                                    </td>
-                                                    {% endfor %}
+                                                    <td>{{ name }}</td>
+                                                    <td>{{ record.date }}</td>
+                                                    <td>{{ record.description }}</td>
+                                                    <td>{{ record.quantity }}</td>
+                                                    <td>{{ record.status }}</td>
+                                                </tr>
+                                                {% endfor %}
                                             </tbody>
-
                                         </table>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- add new product modal -->
-            <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New Product</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/products/add" method="POST">
-                                <div class="form-group">
-                                    <label for="">Product Name</label>
-                                    <input type="text" class="form-control" placeholder="juice" name="product" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Category</label>
-                                    <input type="text" class="form-control" placeholder="500" name="category" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Description</label>
-                                    <input type="text" class="form-control" placeholder="500" name="Description" required>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Add Product</button>
-                                </div>
-                            </form>
-                            <div class=" justify-content-end">
-                                <form action="/products/excel" method="POST">
-                                    <button type="submit" class="btn-warning">Download Excel sheet</button>
-                                </form>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>

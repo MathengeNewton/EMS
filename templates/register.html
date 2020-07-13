@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>create account</title>
+    <!-- css link -->
+    <link rel="stylesheet" href="../static/css/login.css">
+    <!-- bootstrap link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="form">
+            <form class="form-group" action="/reg" method="POST">
+                <h6>Create an owners account</h6>
+                <div class="form-group">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} " role="alert">
+                        <span>{{ message }}</span>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <input type="text" placeholder="Full name" name="name" required />
+                <input type="email" placeholder="Email" name="email" required />
+                <input type="password" placeholder="password" name="password" required />
+                <input type="password" placeholder="confirm password" name="confirmpass" reguired />
+                <button type="submit">register</button>
+                <p class="message">Already registered? <a href="/owner/login">Sign In</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

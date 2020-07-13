@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/css/login.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="form">
+            <form action="/log_in" method="POST" class="login-form">
+                <h6>login</h6>
+                <div class="form-group">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} " role="alert">
+                        <span>{{ message }}</span>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <input type="text" name="email" placeholder="email" required />
+                <input type="password" name="password" placeholder="password" required />
+                <button>login</button>
+                <p class="message">Dont have an account? <a href="/register">Create account</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

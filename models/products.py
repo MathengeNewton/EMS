@@ -8,35 +8,33 @@ class Users(db.Model):
                    primary_key=True, autoincrement=True)
     name = db.Column(db.String(), nullable=False)
     email = db.Column(db.String(), nullable=False)
-    phone_number = db.Column(db.String(), nullable=False)
     password = db.Column(db.String(), nullable=False)
 
     def insert_record(self):
         db.session.add(self)
         db.session.commit()
 
-    
+    # check if email is in use
     @classmethod
     def check_email_exist(cls, email):
-        customer = cls.query.filter_by(email=email).first()
-        if customer:
+        owners = cls.query.filter_by(email=email).first()
+        if owners:
             return True
         else:
             return False
 
-    
+    # validate password
     @classmethod
     def validate_password(cls, email, password):
-        customer = cls.query.filter_by(email=email).first()
-
-        if customer and bcrypt.check_password_hash(customer.password, password):
+        owners = cls.query.filter_by(email=email).first()
+        if owners and bcrypt.check_password_hash(owners.password, password):
             return True
         else:
             return False
 
-    
+    # get customer id
     @classmethod
-    def get_customer_id(cls, email):
+    def get_user_by_email(cls, email):
         return cls.query.filter_by(email=email).first().id
 
 #product model
@@ -107,3 +105,22 @@ class Products(db.Model):
             return True
         else:
             return False
+
+class RestockRequest(db.Model):
+    __tablename__ = 'restockrequests'
+    id = db.Column(db.Integer,nullable=False,primary_key=True)
+    product = db.Column(db.Integer,nullable=False)
+    date = db.Column(db.DateTime,nullable=False)
+    quantity = db.Column(db.Integer,nullable=False)
+    status = db.Column(db.String(),nullable=False)
+
+
+    def create_product(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def all_request(cls):
+        return cls.query.all()
+    
+    
