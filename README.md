@@ -1,7 +1,7 @@
 # EMS
 ems stock management module
 
-clone 
+clone /n
 pip install -r requirements.txt
 python
 import db
