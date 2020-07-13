@@ -1,0 +1,111 @@
+* {
+    font-family: cursive;
+    text-transform: lowercase;
+}
+
+body {
+    background-color: #f9f9f9;
+}
+
+hr {
+    opacity: .6;
+    width: 90%;
+    align-self: center;
+}
+
+a {
+    font-size: small;
+    color: #0000;
+}
+
+
+/*navigation*/
+.dash {
+    width: 100%;
+    color: #0000;
+    display: inline-flex;
+}
+
+.dash .identity {
+    float: left;
+    margin-left: 10%;
+    margin-right: 60%;
+}
+
+.dash .menu {
+    margin-right: 10%;
+    float: right;
+}
+
+/*title*/
+.title {
+    text-align: center;
+    color: #0000;
+}
+
+/*back navigation*/
+.back {
+    height: 3%;
+    width: 15%;
+    margin-left: 10%;
+    color: #0000;
+}
+
+/*content section*/
+
+.content {
+    display: inline-flex;
+    color: #0000;
+    width: 75%;
+    margin-top: 7%;
+    margin-left: 12.5%;
+}
+
+.content .row1 {
+
+    width: 27%;
+    border-radius: 5px;
+    padding: 15px;
+    margin-right: 5%;
+    background-color: grey;
+}
+
+.content .row2 {
+    width: 27%;
+    border-radius: 5px;
+    margin-right: 3%;
+    padding: 15px;
+    margin-left: 3%;
+    background-color: grey;
+}
+
+.content .row3 {
+    width: 27%;
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 5%;
+    background-color: grey;
+}
+
+/*footer*/
+.footer {
+    display: inline-flex;
+    margin-top: 7%;
+    color: #0000;
+    width: 100%;
+    font-size: small;
+}
+
+.footer .copyright {
+    margin-top: 15px;
+    margin-right: 50%;
+    margin-left: 10%;
+
+}
+
+.footer .socialmedia {
+    display: inline-flex;
+    padding: 5px;
+    float: right;
+    margin-right: 10%;
+}

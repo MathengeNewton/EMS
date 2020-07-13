@@ -1,7 +1,8 @@
 from app import db
 from flask_bcrypt import Bcrypt as bcrypt
 
-class Accounts(db.Models):
+#users model
+class Users(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, nullable=False,
                    primary_key=True, autoincrement=True)

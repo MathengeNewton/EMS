@@ -1,0 +1,23 @@
+* {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    text-transform: lowercase;
+}
+
+body {
+    background-color: #f9f9f9;
+    margin: 5px;
+}
+
+hr {
+    opacity: 0.6;
+    width: 100%;
+}
+
+a {
+    font-size: small;
+    color: #0000;
+}
+
+.dash {
+    width: 100%;
+}

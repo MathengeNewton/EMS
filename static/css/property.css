@@ -1,0 +1,93 @@
+* {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    text-transform: lowercase;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #0000;
+    margin: 5px;
+}
+
+hr {
+    opacity: .6;
+    width: 100%;
+    align-self: center;
+}
+
+a {
+    font-size: small;
+    color: #0000;
+}
+
+/*dash*/
+
+
+
+
+
+/*photos*/
+.newrow {
+    color: black;
+    width: 100%;
+    background-color: aqua;
+    display: inline-flex;
+    text-align: center;
+}
+
+.newrow .firstrow {
+    width: 500px;
+    height: 270px;
+}
+
+.newrow .secondrow {
+    width: 500px;
+    height: 270px;
+}
+
+.newrow .thirdrow {
+    width: 350px;
+    height: 270px;
+}
+
+.anotherrow {
+
+    display: inline-flex;
+}
+
+.anotherrow .description {
+    margin: 5%;
+    width: 50%;
+    color: black;
+
+}
+
+.anotherrow .description h5 {
+    opacity: .6;
+}
+
+.anotherrow .billing {
+    position: relative;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 5px;
+    width: 40%;
+    height: 90%;
+    margin: 5%;
+    padding: 5%;
+    color: black;
+}
+
+.anotherrow .billing h5 {
+    opacity: .55;
+}
+
+.anotherrow .description .book form input[type='submit'] {
+    background-color: #000000;
+    text-transform: uppercase;
+    font-size: large;
+    width: 90px;
+    margin: 5%;
+    height: 30px;
+    color: red;
+}
