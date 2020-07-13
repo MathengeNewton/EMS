@@ -117,8 +117,7 @@
                     <div class="col-md-12">
                         <div class="card demo-icons">
                             <div class="card-header">
-                                <h5 class="card-title">Products</h5>
-
+                                <h5 class="card-title">Products</h5>                                    
                                 <div class="form-group">
                                     {% with messages = get_flashed_messages(with_categories=true) %}
                                     {% if messages %}
@@ -133,6 +132,9 @@
                                     {% endif %}
                                     {% endwith %}
                                 </div>
+                                <form action="/products/excel" method="POST">
+                                    <button type="submit" class="btn-warning">Excel Sheet</button>
+                                </form>
                             </div>
                             <div class="card-body all-icons">
                                 <div id="icons-wrapper">
@@ -238,11 +240,7 @@
                                     <button type="submit" class="btn btn-success">Add Product</button>
                                 </div>
                             </form>
-                            <div class=" justify-content-end">
-                                <form action="/products/excel" method="POST">
-                                    <button type="submit" class="btn-warning">Download Excel sheet</button>
-                                </form>
-                            </div>
+                                
                         </div>
 
                     </div>
