@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
 from config.config import *
+from functions.randomid import randomise
 
 app = Flask(__name__)
 
@@ -70,15 +71,50 @@ def main_page():
     #     return redirect(url_for('login'))
 
 
-@app.route('/receivestocks')
+@app.route('/addproduct')
+def add_product():
+    return render_template('upload.html')
+
+@app.route('/productupload',methods=['POST'])
+def upload_product():
+    if request.method == 'POST':
+        product = request.form['productname']
+        description = request.form['description']
+        category = request.form['category']
+        quantity = request.form['quantity']
+        breakages = request.form['breakages']
+        id = randomise(10)
+        prefix = list(category)
+        p_id = prefix[0] + id
+        try:
+            createproduct = Products(id = p_id,product = product,
+                    category=category,description = description,quantity = quantity,breakages = breakages)
+            createproduct.create_product()
+            flash(u'Added succesifully','success')
+            return redirect(url_for('add_product'))
+        except:
+            flash('Error adding product','danger')
+            return redirect(url_for('add_product'))
+    else:
+        flash('Incorect request Method','danger')
+        return redirect(url_for('add_product'))
+
+
+@app.route('/request')
 def receive_stock():
-    requested_stocks = RestockRequest.all_request()
-    return render_template('restockrequests.html',requests=requested_stocks)
+    productlist = Products.all_products()
+    # print(type(productlist))
+    low_stock = []
+    for product in productlist:
+        if product.quantity < 20:
+            low_stock.append(product)
+        # print(product.quantity)
+    return render_template('restockrequests.html',records=low_stock)
 
 @app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
     return redirect(url_for('main_page'))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run()

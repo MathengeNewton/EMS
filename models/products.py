@@ -13,7 +13,6 @@ class Users(db.Model):
     def insert_record(self):
         db.session.add(self)
         db.session.commit()
-        db.session.close()
 
     # check if email is in use
     @classmethod
@@ -46,20 +45,22 @@ class Users(db.Model):
 #product model
 class Products(db.Model):
     __tablename__ = 'products'
-    id = db.Column(db.Integer,nullable=False,primary_key=True)
-    productName = db.Column(db.String(),nullable=False)
+    id = db.Column(db.String(),nullable=False,primary_key=True)
+    product = db.Column(db.String(),nullable=False)
     category = db.Column(db.String(),nullable=False)
     description = db.Column(db.String(),nullable=False)
-    quantity = db.Column(db.Integer(),nullable=False)
-    units = db.Column(db.Integer(),nullable=False)
-    breakages = db.Column(db.Integer())
+    quantity = db.Column(db.Integer,nullable=False)
+    breakages = db.Column(db.Integer,nullable=False)
 
 
     def create_product(self):
         db.session.add(self)
         db.session.commit()
-        db.session.close()
 
+    # @classmethod
+    # def low_stock(cls,lowest):
+    #     lowstock = cls.query.filter_by(quantity = lowest)
+    #     return lowstock
 
     @classmethod
     def all_products(cls):
@@ -80,7 +81,7 @@ class Products(db.Model):
 
     @classmethod
     def get_product_by_name(cls,name):
-        product = cls.query.filter_by(name=name).first()
+        product = cls.query.filter_by(product=name).first()
         db.session.close()
         if product:
             return product
@@ -91,7 +92,7 @@ class Products(db.Model):
     @classmethod
     def get_product_by_stock_size(cls,criteria):
         if criteria:
-            products = cls.query.filter_by(quantity < criteria)
+            products = cls.query.all().order_by()
             db.session.close()
             return products
         else:
@@ -138,8 +139,15 @@ class RestockRequest(db.Model):
 
     @classmethod
     def all_request(cls):
-        requests = cls.query.ll()
+        requests = cls.query.all()
         db.session.close()
         return requests
     
-    
+
+
+class Warehouse(db.Model):
+    __tablename__ = 'warehouses'
+    id = db.Column(db.Integer,nullable=False,primary_key=True)
+    name = db.Column(db.String(200))
+    description = db.Column(db.String(200))
+    type = db.Column(db.String(200))

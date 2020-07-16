@@ -49,25 +49,26 @@
                 <ul class="nav">
                     <li class="">
                         <a href="/">
-                            <i class="nc-icon nc-bank"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
+                    <li class="">
+                        <a href="/addproduct">
+                            <p>Add product</p>
+                        </a>
+                    </li>
                     <li class="active">
-                        <a href="/receivestocks">
-                            <i class="fas fa-align-center"></i>
+                        <a href="/request">
                             <p>Restock Request</p>
                         </a>
                     </li>
                     <li class="">
-                        <a href="">
-                            <i class="fas fa-align-center"></i>
+                        <a href="receive">
                             <p>Receive Stocks</p>
                         </a>
                     </li>
                     <li class="">
-                        <a href=".">
-                            <i class="fas fa-align-center"></i>
+                        <a href="/move">
                             <p>Stock Movement</p>
                         </a>
                     </li>
@@ -133,6 +134,9 @@
                                     {% endif %}
                                     {% endwith %}
                                 </div>
+                                <form action="/products/excel" method="POST">
+                                    <button type="submit" class="btn-warning">Excel Sheet</button>
+                                </form>
                             </div>
                             <div class="card-body all-icons">
                                 <div id="icons-wrapper">
@@ -140,18 +144,24 @@
                                         <table class="table" id="myTable">
                                             <thead class="text-primary">
                                                 <th>Product</th>
-                                                <th>Date</th>
+                                                <th>category</th>
+                                                <th>Description</th>
                                                 <th>Quantity</th>
-                                                <th>Status</th>
+                                                <th>Request</th>
                                             </thead>
                                             <tbody>
                                                 {% for record in records%}
                                                 <tr>
-                                                    <td>{{ name }}</td>
-                                                    <td>{{ record.date }}</td>
+                                                    <td>{{ record.product }}</td>
+                                                    <td>{{ record.category }}</td>
                                                     <td>{{ record.description }}</td>
                                                     <td>{{ record.quantity }}</td>
-                                                    <td>{{ record.status }}</td>
+                                                    <td>
+                                                        <form action="/request/{{ record.id }}" method="POST">
+                                                            <button class="btn btn-sm btn-danger">Request</button>
+                                                        </form>
+                                                    </td>
+                           
                                                 </tr>
                                                 {% endfor %}
                                             </tbody>
